@@ -11,6 +11,8 @@ public class Personnage : MonoBehaviour
     [SerializeField]
     private float jumpForce = 1.5f;
 
+    bool jump = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,12 +47,22 @@ public class Personnage : MonoBehaviour
         //Saut
         if (Input.GetKey(KeyCode.Space) == true)
         {
-            movement += new Vector2(0,jumpForce);
+            if (!jump)
+            {
+                jump = true;
+                GetComponent<Rigidbody2D>().AddForce(new Vector3(0, jumpForce,0));
+            }
         }
+        Debug.Log(GetComponent<Rigidbody2D>().velocity.y);
+        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.y) < 0.001f)
+        {
+            jump = false;
+        }
+
 
         //Temps
         movement = movement * Time.deltaTime;
         gameObject.transform.position += new Vector3(movement.x,movement.y,0);
-        //gameObject.transform.Rotate(new Vector3(0, 0, 10 )); 
+
     }
 }
