@@ -15,7 +15,9 @@ public class PlayerPhysics : MonoBehaviour
 
     [HideInInspector]
     public bool grounded;
-    
+    [HideInInspector]
+    public bool movementStop;
+
     Ray ray;
     RaycastHit hit;
 
@@ -38,7 +40,7 @@ public class PlayerPhysics : MonoBehaviour
         //check collision lower and below
         grounded = false;
 
-        for(int i = 0 ;  i <= 3 ; i++)
+        for(int i = 0 ;  i < 3 ; i++)
         {
             float dir = Mathf.Sign(deltaY);
             float x = (position.x + center.x - size.x/2) + size.x/2 * i; //left, center and then rightmost point of collider
@@ -66,9 +68,8 @@ public class PlayerPhysics : MonoBehaviour
         }
 
         //check collision left and right
-        grounded = false;
-
-        for (int i = 0; i <= 3; i++)
+        movementStop = false;
+        for (int i = 0; i < 3; i++)
         {
             float dir = Mathf.Sign(deltaX);
             float x = position.x + center.x + size.x / 2 * dir ; 
@@ -90,7 +91,7 @@ public class PlayerPhysics : MonoBehaviour
                 else
                     deltaX = 0;
 
-                grounded = true;
+                movementStop = true;
                 break;
             }
         }
