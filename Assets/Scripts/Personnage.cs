@@ -2,67 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerPhysics))]
 public class Personnage : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 6;
+    private float speed = 8;
     [SerializeField]
-    private float sprint = 1.5f;
+    private float acceleration = 30;
     [SerializeField]
-    private float jumpForce = 1.5f;
+    private float jumpHeight = 12;
+    [SerializeField]
+    private float gravity = 20;
 
-    bool jump = false;
+
+    [SerializeField]
+    private float currentSpeed = 1.5f;
+    [SerializeField]
+    private float targetSpeed = 1.5f;
+
+    private Vector2 amountToMove;
+
+    private PlayerPhysics playerPhysics;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        playerPhysics = GetComponent<PlayerPhysics>();
+    }
+
+    private float IncrementTowards(float n, float target, float accel)
+    {
+        if (n == target)
+            return n;
+        else
+        {
+            float dir = Mathf.Sign(target - n);  //must n be increased or decrease to get closer to target
+            n += accel * Time.deltaTime * dir;
+            return (dir == Mathf.Sign(target - n)) ? n : target;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 movement = new Vector2(0,0);
+        targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
+        currentSpeed = IncrementTowards(currentSpeed,targetSpeed,acceleration);
 
-        //Déplacement Gauche
-        if (Input.GetKey(KeyCode.D) == true)
+        if(playerPhysics.grounded)
         {
-            movement += new Vector2(1,0);
-        }
-        
-        //Déplacement Droite
-        if (Input.GetKey(KeyCode.Q) == true)
-        {
-            movement += new Vector2(-1,0);
-        }
-
-        //Sprint
-        if (Input.GetKey(KeyCode.LeftShift) == true)
-        {
-            movement = movement * sprint;
-        }
-
-        movement = movement * speed;
-
-        //Saut
-        if (Input.GetKey(KeyCode.Space) == true)
-        {
-            if (!jump)
+            amountToMove.y = 0;
+            //Jump
+            if (Input.GetButtonDown("Jump"))
             {
-                jump = true;
-                GetComponent<Rigidbody2D>().AddForce(new Vector3(0, jumpForce,0));
+                amountToMove.y = jumpHeight;
+
             }
         }
-        Debug.Log(GetComponent<Rigidbody2D>().velocity.y);
-        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.y) < 0.001f)
-        {
-            jump = false;
-        }
 
-
-        //Temps
-        movement = movement * Time.deltaTime;
-        gameObject.transform.position += new Vector3(movement.x,movement.y,0);
+        amountToMove.x = currentSpeed;
+        amountToMove.y -= gravity * Time.deltaTime;
+        playerPhysics.Move(amountToMove * Time.deltaTime) ;
 
     }
+
+
 }
