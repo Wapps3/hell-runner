@@ -1,10 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(PlayerPhysics))]
-public class Personnage : MonoBehaviour
+public class Ennemy : MonoBehaviour
 {
     [SerializeField]
     private float speed = 8;
@@ -16,13 +14,6 @@ public class Personnage : MonoBehaviour
     private float gravity = 20;
 
     [SerializeField]
-    private int life = 3;
-
-    [SerializeField]
-    private Animator animator;
-
-
-    [SerializeField]
     private float currentSpeed = 1.5f;
     [SerializeField]
     private float targetSpeed = 1.5f;
@@ -30,6 +21,9 @@ public class Personnage : MonoBehaviour
     private Vector2 amountToMove;
 
     private PlayerPhysics playerPhysics;
+
+    [SerializeField]
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -50,15 +44,6 @@ public class Personnage : MonoBehaviour
         }
     }
 
-    public void Hit()
-    {
-        life --;
-
-        if(life < 0)
-        {
-            SceneManager.LoadScene("GameOver");
-        }
-    }
     // Update is called once per frame
     void Update()
     {
@@ -69,38 +54,40 @@ public class Personnage : MonoBehaviour
             currentSpeed = 0;
         }
 
-        targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
-        currentSpeed = IncrementTowards(currentSpeed,targetSpeed,acceleration);
+       
+        targetSpeed = Random.Range(-1.0f,1.0f) * speed;
+        currentSpeed = IncrementTowards(currentSpeed, targetSpeed, acceleration);
 
-        if(playerPhysics.grounded)
+        if (playerPhysics.grounded)
         {
             amountToMove.y = 0;
-            //Jump
-            if (Input.GetButtonDown("Jump"))
-            {
-                amountToMove.y = jumpHeight;
-
-            }
         }
 
 
         amountToMove.x = currentSpeed;
         amountToMove.y -= gravity * Time.deltaTime;
-        playerPhysics.Move(amountToMove * Time.deltaTime) ;
+        playerPhysics.Move(amountToMove * Time.deltaTime);
         animator.SetFloat("Speed", Mathf.Abs(currentSpeed));
 
-        if(currentSpeed < 0)
+        if (currentSpeed < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        if(currentSpeed > 0)
+        if (currentSpeed > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
         }
 
-
     }
 
+
+    void OnTriggerEnter(Collider c)
+    {
+        if (c.tag == "Player")
+        {
+            c.GetComponent<Personnage>().Hit();
+        }
+    }
 
 }
