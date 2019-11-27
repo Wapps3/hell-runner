@@ -83,6 +83,11 @@ public class Personnage : MonoBehaviour
             }
         }
 
+        
+        if (Input.GetMouseButtonUp(0))
+        {
+            animator.SetTrigger("Attack");
+        }
 
         amountToMove.x = currentSpeed;
         amountToMove.y -= gravity * Time.deltaTime;

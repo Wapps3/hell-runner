@@ -43,8 +43,8 @@ public class PlayerPhysics : MonoBehaviour
         for(int i = 0 ;  i < 3 ; i++)
         {
             float dir = Mathf.Sign(deltaY);
-            float x = (position.x + center.x - size.x/2) + size.x/2 * i; //left, center and then rightmost point of collider
-            float y = position.y + center.y + size.y/2 * dir; //bottom of collider
+            float x = (position.x + center.x - size.x/2.0f) + size.x/2.0f * i; //left, center and then rightmost point of collider
+            float y = position.y + center.y + size.y/2.0f * dir; //bottom of collider
 
             ray = new Ray( new Vector2(x, y), new Vector2(0,dir) );
             Debug.DrawRay(ray.origin, ray.direction);
@@ -69,11 +69,11 @@ public class PlayerPhysics : MonoBehaviour
 
         //check collision left and right
         movementStop = false;
-        for (int i = 0; i < 3; i++)
+        for (int i = 1; i < 4; i++)
         {
             float dir = Mathf.Sign(deltaX);
-            float x = position.x + center.x + size.x / 2 * dir ; 
-            float y = position.y + center.y - size.y + size.y/2 * i; 
+            float x = position.x + center.x + size.x / 2.0f * dir ; 
+            float y = position.y + center.y - size.y + size.y/2.0f * i; 
 
             ray = new Ray(new Vector2(x, y), new Vector2(dir, 0));
             Debug.DrawRay(ray.origin, ray.direction);
