@@ -77,7 +77,8 @@ public class Ennemy : MonoBehaviour
         amountToMove.x = currentSpeed;
         amountToMove.y -= gravity * Time.deltaTime;
         playerPhysics.Move(amountToMove * Time.deltaTime);
-        animator.SetFloat("Speed", Mathf.Abs(currentSpeed));
+        animator.SetFloat("Speed", Mathf.Abs(0));
+        animator.SetBool("Attack",true);
 
         if (currentSpeed != 0)
             gameObject.transform.localScale = new Vector3( Mathf.Sign(currentSpeed),transform.localScale.y,transform.localScale.z );
