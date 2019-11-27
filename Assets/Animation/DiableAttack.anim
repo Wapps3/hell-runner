@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DiableMove
+  m_Name: DiableAttack
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -21,15 +21,19 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: 185f9dae24cbec74ca76354c96b3f497, type: 3}
-    - time: 0.33333334
-      value: {fileID: 21300000, guid: 9a44e6689a6d64b47b16776635a369e4, type: 3}
-    - time: 0.6666667
+    - time: 0.2
+      value: {fileID: 21300000, guid: df75b62f4ea38844d84fe7950f885e31, type: 3}
+    - time: 0.4
+      value: {fileID: 21300000, guid: 6a937b0682783ad46aea42cf979f821a, type: 3}
+    - time: 0.6
+      value: {fileID: 21300000, guid: df75b62f4ea38844d84fe7950f885e31, type: 3}
+    - time: 0.8
       value: {fileID: 21300000, guid: 185f9dae24cbec74ca76354c96b3f497, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 3
+  m_SampleRate: 5
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -45,7 +49,9 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 21300000, guid: 185f9dae24cbec74ca76354c96b3f497, type: 3}
-    - {fileID: 21300000, guid: 9a44e6689a6d64b47b16776635a369e4, type: 3}
+    - {fileID: 21300000, guid: df75b62f4ea38844d84fe7950f885e31, type: 3}
+    - {fileID: 21300000, guid: 6a937b0682783ad46aea42cf979f821a, type: 3}
+    - {fileID: 21300000, guid: df75b62f4ea38844d84fe7950f885e31, type: 3}
     - {fileID: 21300000, guid: 185f9dae24cbec74ca76354c96b3f497, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2

@@ -9,8 +9,6 @@ public class Ennemy : MonoBehaviour
     [SerializeField]
     private float acceleration = 30;
     [SerializeField]
-    private float jumpHeight = 12;
-    [SerializeField]
     private float gravity = 20;
 
     [SerializeField]
@@ -25,11 +23,15 @@ public class Ennemy : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    float r;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
         playerPhysics = GetComponent<PlayerPhysics>();
+
+        StartCoroutine(RandomDirection());
     }
 
     private float IncrementTowards(float n, float target, float accel)
@@ -44,6 +46,16 @@ public class Ennemy : MonoBehaviour
         }
     }
 
+    IEnumerator RandomDirection()
+    {
+        bool run = true;
+        while(run == true)
+        {
+            r = Random.Range(-1.0f, 1.0f);
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -54,8 +66,7 @@ public class Ennemy : MonoBehaviour
             currentSpeed = 0;
         }
 
-       
-        targetSpeed = Random.Range(-1.0f,1.0f) * speed;
+        targetSpeed = r * speed;
         currentSpeed = IncrementTowards(currentSpeed, targetSpeed, acceleration);
 
         if (playerPhysics.grounded)
@@ -63,21 +74,16 @@ public class Ennemy : MonoBehaviour
             amountToMove.y = 0;
         }
 
-
         amountToMove.x = currentSpeed;
         amountToMove.y -= gravity * Time.deltaTime;
         playerPhysics.Move(amountToMove * Time.deltaTime);
         animator.SetFloat("Speed", Mathf.Abs(currentSpeed));
 
-        if (currentSpeed < 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
+        if (currentSpeed != 0)
+            gameObject.transform.localScale = new Vector3( Mathf.Sign(currentSpeed),transform.localScale.y,transform.localScale.z );
+        
 
-        if (currentSpeed > 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
+
 
     }
 

@@ -87,17 +87,10 @@ public class Personnage : MonoBehaviour
         amountToMove.x = currentSpeed;
         amountToMove.y -= gravity * Time.deltaTime;
         playerPhysics.Move(amountToMove * Time.deltaTime) ;
-        animator.SetFloat("Speed", Mathf.Abs(currentSpeed));
+        animator.SetFloat("Speed", Mathf.Abs(currentSpeed));    
 
-        if(currentSpeed < 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
-
-        if(currentSpeed > 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
+        if(currentSpeed != 0)
+           gameObject.transform.localScale = new Vector3(  Mathf.Sign(currentSpeed), transform.localScale.y, transform.localScale.z);
 
 
     }
