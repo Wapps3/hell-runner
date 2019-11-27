@@ -76,6 +76,17 @@ public class Personnage : MonoBehaviour
         playerPhysics.Move(amountToMove * Time.deltaTime) ;
         animator.SetFloat("Speed", Mathf.Abs(currentSpeed));
 
+        if(currentSpeed < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+
+        if(currentSpeed > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+
     }
 
 
