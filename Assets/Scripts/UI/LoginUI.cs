@@ -16,6 +16,8 @@ public class LoginUI : MonoBehaviour
 
     public Button validButton;
 
+    public GameObject warning;
+
     Login listLogin = new Login();
 
     // Start is called before the first frame update

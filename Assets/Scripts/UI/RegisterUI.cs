@@ -11,6 +11,8 @@ public class RegisterUI : MonoBehaviour
     public GameObject passwordInput;
     public GameObject pseudoInput;
 
+    public GameObject warning;
+
     private string usernameString;
     private string passwordString;
     private string pseudoString;
@@ -46,15 +48,18 @@ public class RegisterUI : MonoBehaviour
     {
         if(usernameString == "")
         {
-
+            warning.GetComponent<Text>().text = "UserName is not fill";
+            warning.GetComponent<Text>().color = Color.red;
         }
         else if( passwordString == "")
         {
-
+            warning.GetComponent<Text>().text = "Password is not fill";
+            warning.GetComponent<Text>().color = Color.red;
         }
         else if(pseudoString == "")
         {
-
+            warning.GetComponent<Text>().text = "Pseudo is not fill";
+            warning.GetComponent<Text>().color = Color.red;
         }
         else
         {
@@ -64,6 +69,13 @@ public class RegisterUI : MonoBehaviour
             FileStream file = File.Create(Application.streamingAssetsPath + "/login.json");
             byte[] info = new UTF8Encoding(true).GetBytes(JsonUtility.ToJson(newinfo));
             file.Write(info, 0, info.Length );
+
+            warning.GetComponent<Text>().text = "Inscription completed";
+            warning.GetComponent<Text>().color = Color.green;
+
+            usernameInput.GetComponent<InputField>().text = "";
+            passwordInput.GetComponent<InputField>().text = "";
+            pseudoInput.GetComponent<InputField>().text = "";
         }
        
     }
