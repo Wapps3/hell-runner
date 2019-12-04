@@ -84,9 +84,11 @@ public class Personnage : MonoBehaviour
         }
 
         
-        if (Input.GetMouseButtonUp(0))
+
+        if (Input.GetMouseButtonDown(0))
         {
-            animator.SetTrigger("Attack");
+            if(animator.GetBool("Equip"))
+                animator.SetTrigger("Attack");
         }
 
         amountToMove.x = currentSpeed;
