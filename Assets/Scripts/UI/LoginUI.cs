@@ -55,7 +55,22 @@ public class LoginUI : MonoBehaviour
                 {
                     SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
                 }
+                else
+                {
+                    warning.GetComponent<Text>().text = "Wrong Password";
+                    warning.GetComponent<Text>().color = Color.red;
+                }
             }
+            else
+            {
+                warning.GetComponent<Text>().text = "Unknown UserName";
+                warning.GetComponent<Text>().color = Color.red;
+            }
+        }
+        else
+        {
+            warning.GetComponent<Text>().text = "UserName is not fill";
+            warning.GetComponent<Text>().color = Color.red;
         }
     }
 
