@@ -23,6 +23,9 @@ public class Ennemy : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    private float life = 5.0f;
+
     float r;
 
     // Start is called before the first frame update
@@ -78,7 +81,9 @@ public class Ennemy : MonoBehaviour
         amountToMove.y -= gravity * Time.deltaTime;
         playerPhysics.Move(amountToMove * Time.deltaTime);
         animator.SetFloat("Speed", Mathf.Abs(0));
-        animator.SetBool("Attack",true);
+
+        if( Random.Range(0.0f,1.0f) > 0.8f)
+            animator.SetTrigger("Attack");
 
         if (currentSpeed != 0)
             gameObject.transform.localScale = new Vector3( Mathf.Sign(currentSpeed),transform.localScale.y,transform.localScale.z );
@@ -88,6 +93,16 @@ public class Ennemy : MonoBehaviour
 
     }
 
+    public void Hit()
+    {
+        life--;
+
+        Debug.Log("vie du monstre = " + life);
+        if (life < 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void OnTriggerEnter(Collider c)
     {
