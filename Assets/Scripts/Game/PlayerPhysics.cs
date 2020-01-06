@@ -21,7 +21,6 @@ public class PlayerPhysics : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
-
     void Start()
     {
         collider = GetComponent<BoxCollider>();
