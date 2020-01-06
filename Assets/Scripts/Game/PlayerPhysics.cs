@@ -62,7 +62,7 @@ public class PlayerPhysics : MonoBehaviour
                     deltaY = 0;
 
                 grounded = true;
-                break;
+                //break;
             }
         }
 
@@ -91,7 +91,7 @@ public class PlayerPhysics : MonoBehaviour
                     deltaX = 0;
 
                 movementStop = true;
-                break;
+                //break;
             }
         }
 
