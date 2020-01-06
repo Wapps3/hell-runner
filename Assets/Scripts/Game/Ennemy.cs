@@ -111,7 +111,7 @@ public class Ennemy : MonoBehaviour
         life--;
         StartCoroutine(GetHit());
 
-        transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().fillAmount = life / maxLife;
+        gameObject.transform.Find("Life").transform.GetChild(0).GetComponent<Image>().fillAmount = life / maxLife;
 
         if (life <= 0)
         {
