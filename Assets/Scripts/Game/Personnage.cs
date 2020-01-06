@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerPhysics))]
 public class Personnage : MonoBehaviour
@@ -21,9 +22,13 @@ public class Personnage : MonoBehaviour
     [SerializeField]
     private float maxLife = 3.0f;
 
+    private Image lifebar;
+
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    private Image lifeBar;
 
     [SerializeField]
     private float currentSpeed = 1.5f;
@@ -39,6 +44,7 @@ public class Personnage : MonoBehaviour
     {
         animator = gameObject.GetComponent<Animator>();
         playerPhysics = GetComponent<PlayerPhysics>();
+        
     }
 
     private float IncrementTowards(float n, float target, float accel)
@@ -69,7 +75,7 @@ public class Personnage : MonoBehaviour
 
         StartCoroutine(GetHit());
 
-        if (life < 0)
+        if (life <= 0)
         {
             SceneManager.LoadScene("GameOver");
         }
@@ -116,6 +122,8 @@ public class Personnage : MonoBehaviour
         if(currentSpeed != 0)
            gameObject.transform.localScale = new Vector3(  Mathf.Sign(currentSpeed), transform.localScale.y, transform.localScale.z);
 
+
+        lifeBar.fillAmount = (life / maxLife);
 
     }
 

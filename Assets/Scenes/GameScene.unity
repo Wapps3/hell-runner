@@ -588,8 +588,19 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6099486525997694762, guid: bce38bdd71ea2104e86e0963f01ea4ea,
+        type: 3}
+      propertyPath: m_Name
+      value: Life
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bce38bdd71ea2104e86e0963f01ea4ea, type: 3}
+--- !u!223 &387215740 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6099486525885679036, guid: bce38bdd71ea2104e86e0963f01ea4ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 349657531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &970100729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,6 +1102,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3207611167224662052, guid: f20d0c4043a936148b60588142557e32,
+        type: 3}
+      propertyPath: HUD
+      value: 
+      objectReference: {fileID: 387215740}
+    - target: {fileID: 3207611167224662052, guid: f20d0c4043a936148b60588142557e32,
+        type: 3}
+      propertyPath: lifeBar
+      value: 
+      objectReference: {fileID: 1885785116}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f20d0c4043a936148b60588142557e32, type: 3}
 --- !u!1001 &1634439899
@@ -1254,6 +1275,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1885785116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6099486525997694760, guid: bce38bdd71ea2104e86e0963f01ea4ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 349657531}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2500901527057310439
 PrefabInstance:
   m_ObjectHideFlags: 0
