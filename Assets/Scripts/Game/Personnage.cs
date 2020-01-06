@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +17,9 @@ public class Personnage : MonoBehaviour
     private float gravity = 20;
 
     [SerializeField]
-    private int life = 3;
+    private float life = 3.0f;
+    [SerializeField]
+    private float maxLife = 3.0f;
 
     [SerializeField]
     private Animator animator;
@@ -50,14 +53,28 @@ public class Personnage : MonoBehaviour
         }
     }
 
+    IEnumerator GetHit()
+    {
+        
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+            yield return new WaitForSeconds(0.05f);
+
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        
+    }
     public void Hit()
     {
         life --;
 
-        if(life < 0)
+        StartCoroutine(GetHit());
+
+        if (life < 0)
         {
             SceneManager.LoadScene("GameOver");
         }
+
+        
     }
     // Update is called once per frame
     void Update()

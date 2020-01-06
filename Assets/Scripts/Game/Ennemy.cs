@@ -25,6 +25,8 @@ public class Ennemy : MonoBehaviour
 
     [SerializeField]
     private float life = 5.0f;
+    [SerializeField]
+    private float maxLife = 5.0f;
 
     float r;
 
@@ -93,9 +95,20 @@ public class Ennemy : MonoBehaviour
 
     }
 
+    IEnumerator GetHit()
+    {
+
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+        yield return new WaitForSeconds(0.05f);
+
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+    }
     public void Hit()
     {
         life--;
+        StartCoroutine(GetHit());
 
         Debug.Log("vie du monstre = " + life);
         if (life < 0)
