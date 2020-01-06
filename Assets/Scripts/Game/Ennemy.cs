@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ennemy : MonoBehaviour
 {
@@ -110,8 +111,9 @@ public class Ennemy : MonoBehaviour
         life--;
         StartCoroutine(GetHit());
 
-        Debug.Log("vie du monstre = " + life);
-        if (life < 0)
+        transform.GetChild(1).transform.GetChild(0).GetComponent<Image>().fillAmount = life / maxLife;
+
+        if (life <= 0)
         {
             Destroy(gameObject);
         }

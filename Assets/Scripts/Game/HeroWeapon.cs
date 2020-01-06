@@ -9,7 +9,6 @@ public class HeroWeapon : MonoBehaviour
         if (c.tag == "Monster")
         {
             c.GetComponent<Ennemy>().Hit();
-            Debug.Log("Alo ?");
         }
     }
 
