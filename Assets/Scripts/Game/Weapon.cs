@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
-        Instantiate(prefab,firePoint.position + gameObject.transform.position, Quaternion.identity);
+        Instantiate(prefab,firePoint.position, Quaternion.identity);
     }
 
     // Update is called once per frame
