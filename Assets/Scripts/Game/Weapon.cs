@@ -6,29 +6,26 @@ public class Weapon : MonoBehaviour
 {
     public float time;
 
+    public GameObject prefab;
+
     private Transform firePoint;
 
     // Start is called before the first frame update
     void Start()
     {
        firePoint = gameObject.transform.Find("FirePoint").transform;
+
+        InvokeRepeating("Shoot",0.0f,time);
     }
 
     public void Shoot()
     {
-
+        Instantiate(prefab,firePoint.position + gameObject.transform.position, Quaternion.identity);
     }
-
-    IEnumerator TimeBetweenShoot()
-    {
-        Shoot();
-        yield return new WaitForSeconds(time);
-    }
-
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(TimeBetweenShoot());
+        
     }
 }
