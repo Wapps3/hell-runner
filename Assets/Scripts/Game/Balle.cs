@@ -27,6 +27,8 @@ public class Balle : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
+        Debug.Log("Coucou");
+
         if (c.tag == "Player")
         {
             c.GetComponent<Personnage>().Hit();
