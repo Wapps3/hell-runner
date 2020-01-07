@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c65e02914295f478e5fdea1f6f4e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1
+  time: 2
   life: 2
   lifeMax: 2
   prefab: {fileID: 4043910823590453701, guid: 7a55f875307b7704991ae74c1953cad8, type: 3}

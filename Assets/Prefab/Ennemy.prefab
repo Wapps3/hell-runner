@@ -207,8 +207,8 @@ MonoBehaviour:
   currentSpeed: 1.5
   targetSpeed: 1.5
   animator: {fileID: 5059442028645919820}
-  life: 5
-  maxLife: 5
+  life: 2
+  maxLife: 2
 --- !u!95 &5059442028645919820
 Animator:
   serializedVersion: 3
