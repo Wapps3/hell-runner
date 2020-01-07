@@ -10,6 +10,11 @@ public class HeroWeapon : MonoBehaviour
         {
             c.GetComponent<Ennemy>().Hit();
         }
+
+        if (c.tag == "MonsterFire")
+        {
+            c.GetComponent<Weapon>().Hit();
+        }
     }
 
 }

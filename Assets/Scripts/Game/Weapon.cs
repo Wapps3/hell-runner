@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
     public float time;
+
+    public float life;
+    public float lifeMax;
 
     public GameObject prefab;
 
@@ -17,6 +21,31 @@ public class Weapon : MonoBehaviour
 
         InvokeRepeating("Shoot",0.0f,time);
     }
+
+    IEnumerator GetHit()
+    {
+
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+        yield return new WaitForSeconds(0.05f);
+
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+
+    }
+
+    public void Hit()
+    {
+        life--;
+        StartCoroutine(GetHit());
+
+        gameObject.transform.Find("Life").transform.GetChild(0).GetComponent<Image>().fillAmount = life / lifeMax;
+
+        if (life <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     public void Shoot()
     {
