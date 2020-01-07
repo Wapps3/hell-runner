@@ -53,7 +53,7 @@ public class LoginUI : MonoBehaviour
             {
                 if(passwordString == listLogin.password[listLogin.username.IndexOf(usernameString)] )
                 {
-                    SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+                    SceneManager.LoadScene("Level", LoadSceneMode.Single);
                 }
                 else
                 {
